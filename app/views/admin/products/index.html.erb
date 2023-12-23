@@ -1,0 +1,66 @@
+<div class="w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <div class="flex justify-between items-center">
+    <h1 class="font-bold text-4xl">Products</h1>
+    <%= link_to "New product", new_admin_product_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+  </div>
+
+  <div class="flex mt-4 flex-col md:flex-row items-start md:items-center justify-betwee w-full">
+    <%= form_with url: admin_products_path, method: :get, class: "flex" do |form| %>
+      <%= form.text_field :query, placeholder: "Search", class: "rounded border-gray-500 text-gray-800" %>
+      <%= form.submit "Submit", class: "cursor-pointer bg-gray-500 ml-2 hover:bg-gray-600 text-white py-2 px-4 rounded" %>
+    <% end %>
+    <%= form_with url: admin_products_path, method: :get, class: 'flex' do |form| %>
+      <%= form.submit "Clear", class: "cursor-pointer bg-gray-500 ml-0 md:ml-2 mt-2 md:mt-0 hover:bg-gray-600 text-white py-2 px-4 rounded" %>
+    <% end %>
+  </div>
+
+  <div class="flex flex-col w-full">
+    <div class="overlow-x-auto sm:mx-0.5 lg:mx-0.5">
+      <div class="py-2 inline-block min-w-full">
+        <div class="overlow-x-auto">
+          <table class="min-w-full overflow-x-scroll">
+            <thead class="bg-white border-b">
+              <tr>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                  Name
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                  Description 
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-800 px-6 py-4 text-left">
+                  Price 
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @admin_products.each do |p| %>
+                <tr class="bg-gray-50 border-b">
+                  <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800 underline">
+                    <%= p.images.any? ? image_tag(p.images.first.variant(:thumb)) : image_tag("https://via.placeholder.com/50") %>
+                  </td>
+                  <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800 underline">
+                    <%= link_to p.name, edit_admin_product_path(p) %>
+                  </td>
+                  <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800">
+                    <%= p.description %>
+                  </td>
+                  <td class="px-6 py-4 whitepsace-nowrap tex-sm font-medium text-gray-800">
+                    $<%= (p.price/100.0).to_s %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+          <%== pagy_nav(@pagy) if @pagy.pages > 1 %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

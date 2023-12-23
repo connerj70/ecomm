@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ecomm</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <main class="flex">
+      <div class="flex w-full">
+        <nav class="w-64 p-4 h-screen bg-gray-600 sticky top-0">
+          <div class="flex">
+            <%= image_tag 'logo.png', class: "w-16" %>
+            <h1 class="text-md py-2 text-white font-bold hidden md:block">Ecomm Admin</h1>
+          </div>
+          <ul class="flex flex-col text-white">
+            <li>
+              <%= link_to admin_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'gauge-high', class: 'mr-2') %> <span class="hidden md:inline-block">Dashboard</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_products_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'cart-shopping', class: 'mr-2') %> <span class="hidden md:inline-block">Products</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_categories_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'list', class: 'mr-2') %> <span class="hidden md:inline-block">Categories</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to admin_orders_path, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'truck-fast', class: 'mr-2') %> <span class="hidden md:inline-block">Orders</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_admin_session_path, data: { "turbo-method": :delete, "turbo-confirm": "Are you sure you want to sign out?" }, class: "block px-4 py-2 hover:rounded hover:bg-gray-700" do %>
+                <%= icon('fa-solid', 'sign-out', class: 'mr-2') %> <span class="hidden md:inline-block">Sign out</span>
+              <% end %>
+            </li>
+          </ul>
+        </nav>
+        <div class="w-full p-8">
+        <%= yield %>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

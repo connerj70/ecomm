@@ -1,0 +1,28 @@
+<h1>Category Show Page</h1>
+<div class="min-h-screen flex justify-center">
+  <div class="flex flex-wrap flex-col mt-6">
+    <h2 class="text-lg text-gray-800">Filter</h2>
+    <%= form_with url: category_path(@category), method: :get, class: "flex flex-col"  do |form| %>
+      <%= form.number_field :min, placeholder: "Min Price", class: "border border-gray-800 rounded-md p-2 w-32" %>
+      <%= form.number_field :max, placeholder: "Max Price", class: "border border-gray-800 rounded-md p-2 mt-2 w-32" %>
+      <%= form.submit "Filter", class: "bg-gray-800 text-white rounded-md p-2 mt-2 cursor-pointer" %>
+    <% end %>
+    <%= form_with url: category_path(@category), method: :get, class: "flex flex-col" do |form| %>
+      <%= form.submit "Clear", class: "bg-gray-800 text-white rounded-md p-2 mt-2 cursor-pointer" %>
+    <% end %>
+  </div>
+  <div class="flex flex-wrap mt-6 gap-10 flex-grow justify-center items-start">
+    <% if @products.empty? %>
+      <p class="text-2xl text-left text-gray-800">No products found</p>
+    <% else %>
+      <% @products.each do |product| %>
+        <%= link_to product_path(product) do %>
+          <div class="max-w-xs flex flex-col p-4 justify-center items-center">
+            <%= product.images.first ? image_tag(product.images.first.variant(:medium), class: "rounded") : image_tag("http://via.placeholder.com/250", class: "rounded") %>
+            <p class="mt-6 font-medium text-gray-800"><%= product.name %></p>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

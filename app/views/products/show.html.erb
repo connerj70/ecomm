@@ -1,0 +1,30 @@
+<h1>Product show page</h1>
+<div class="flex justify-center gap-20 py-10">
+  <div class="flex flex-wrap max-w-lg">
+    <% @product.images.each do |image| %>
+      <%= image_tag image, class: "w-auto h-64" %>
+    <% end %>
+  </div>
+
+  <div data-controller="products" data-products-product-value="<%= @product.to_json %>" class="flex flex-col items-start max-w-sm">
+    <h1 class="font-bold text-4xl uppercase"><%= @product.name %></h1>
+    <p class="text-2xl mt-4">$<%= (@product.price/100.0).to_s %>
+    <p class="text-md py-8"><%= @product.description %></p>
+    <div class="my-8">
+      <p class='uppercase text-lg'>Size</p>
+      <% @product.stocks.each do |stock| %>
+        <% if stock.amount > 0 %>
+          <button data-action="click->products#selectSize" value="<%= stock.size %>" class="bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focu:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+            <%= stock.size %>
+          </button>
+        <% else %> 
+          <button disabled value="<%= stock.size %>" class="disabled:bg-gray-400 bg-gray-200 text-gray-800 font-semibold py-2 px-4 rounded hover:bg-gray-300 focus:outline-none focu:ring-2 focus:ring-gray-500 focus:ring-opacity-50">
+            <%= stock.size %>
+          </button>
+        <% end %>
+      <% end %>
+    </div>
+    <div id="selected-size"></div>
+    <button data-action="click->products#addToCart" class="inline-flex items-center justify-center px-5 py-3 border border-transparent font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Add To Cart</button>
+  </div>
+</div>

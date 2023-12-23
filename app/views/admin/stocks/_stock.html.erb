@@ -1,0 +1,22 @@
+<div id="<%= dom_id stock %>">
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Size:</strong>
+    <%= stock.size %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Amount:</strong>
+    <%= stock.amount %>
+  </p>
+
+  <p class="my-5">
+    <strong class="block font-medium mb-1">Product:</strong>
+    <%= stock.product_id %>
+  </p>
+
+  <% if action_name != "show" %>
+    <%= link_to "Show this stock", [:admin, stock.product, stock], class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Edit this stock", edit_admin_product_stock_path(stock.product, stock), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
+    <hr class="mt-6">
+  <% end %>
+</div>

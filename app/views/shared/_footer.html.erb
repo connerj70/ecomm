@@ -1,0 +1,62 @@
+<footer class="bg-gray-800 text-white">
+  <div class="max-2-6xl max-auto px-4 py-10 md:py-20">
+    <div class="xl:grid xl:grid-cols-3 xl:gap-8">
+      <!-- About section -->
+      <div class="space-y-8 xl:col-span-1">
+        <h3 class="text-sm font-semibold text-gray-200 tracking-wider uppercase">About Ecomm</h3>
+        <p class="text-white leading-6">
+          Ecomm is a leading online marketplace, offering a wide range of products to cater to all your needs. Our commitment ot quality and customer service ensures a great shopping experience.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="mt-12 grid grid-cols-2 gap-8 xl:mt-0 xl:col-span-2">
+        <div class="md:grid md:grid-cols-2 md:gap-8">
+          <div>
+            <h3 class="text-sm font-semibold text-gray-200 tracking wider uppercase">Quick Links</h3>
+            <ul class="mt-4 space-y-4">
+              <li>
+                <%= link_to "Home", root_path, class: "text-base leading-6 text-white hover:text-gray-100" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Contact information -->
+      <div class="mt-8 mb-8 md:grid md:grid-cols-2 md:gap-8">
+        <div>
+          <h3 class="text-sm font-semibold tracking-wider uppercase text-gray-200">
+            Contact
+          </h3>
+          <ul class="mt-4 space-y-4">
+            <li>
+              <p class="text-base leading-6 text-white">
+              123 Ecom Lane <br>
+              E-commerce City, EC 12345
+              </p>
+            </li>
+            <li>
+              <p class="text-base leading-6 text-white">
+              Email: support@ecom.com
+              </p>
+            </li>
+            <li>
+              <p class="text-base leading-6 text-white">
+              Phone: (123) 456-7890
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="border-t border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 py-6 md:flex md:items-center md:justify-between">
+          <p class="mt-6 text-base leading-6 text-gray-400 md:mt-0 md:order-1">
+          &copy; <%= Time.now.year %> Ecomm, Inc. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
